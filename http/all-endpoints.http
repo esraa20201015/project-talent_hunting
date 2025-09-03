@@ -1,0 +1,303 @@
+### ===========================================
+### CATEGORY ENDPOINTS
+### ===========================================
+
+### Create Category
+POST http://localhost:4002/category
+Content-Type: application/json
+
+{
+  "name": "Private"
+}
+
+### Get All Categories
+GET http://localhost:4002/category
+
+### Get Category by ID
+GET http://localhost:4002/category/1
+
+### Delete Category
+DELETE http://localhost:4002/category/1
+
+### ===========================================
+### COMPANY ENDPOINTS
+### ===========================================
+
+### Create Company
+POST http://localhost:4002/company
+Content-Type: application/json
+
+{
+  "name": "Meitstech",
+  "location": "Cairo, Egypt",
+  "employee_count": 150,
+  "commercial_id": "c29tZS1iYXNlNjQtY29kZQ==",
+  "categoryId": "1"
+}
+
+### Get All Companies
+GET http://localhost:4002/company
+
+### Get Company by ID
+GET http://localhost:4002/company/1
+
+### Delete Company
+DELETE http://localhost:4002/company/1
+
+### ===========================================
+### DEPARTMENT ENDPOINTS
+### ===========================================
+
+### Create Department
+POST http://localhost:4002/department
+Content-Type: application/json
+
+{
+  "name": "IT Department",
+  "description": "Handles software and infrastructure",
+  "companyId": "1"
+}
+
+### Get All Departments
+GET http://localhost:4002/department
+
+### Get Department by ID
+GET http://localhost:4002/department/1
+
+### Delete Department
+DELETE http://localhost:4002/department/1
+
+### ===========================================
+### USER ENDPOINTS
+### ===========================================
+
+### Create User
+POST http://localhost:4002/user
+Content-Type: application/json
+
+{
+  "full_name": "Ahmed Ali",
+  "email": "ahmed@example.com",
+  "password": "hashedpassword",
+  "user_img": "aW1hZ2UtYmFzZTY0",
+  "companyId": 1,
+  "departmentId": 1,
+  "roleIds": ["1", "2"]
+}
+
+### Get All Users
+GET http://localhost:4002/user
+
+### Get User by ID
+GET http://localhost:4002/user/1
+
+### Delete User
+DELETE http://localhost:4002/user/1
+
+### ===========================================
+### ROLE ENDPOINTS
+### ===========================================
+
+### Create Role
+POST http://localhost:4002/role
+Content-Type: application/json
+
+{
+  "name": "Admin"
+}
+
+### Get All Roles
+GET http://localhost:4002/role
+
+### Get Role by ID
+GET http://localhost:4002/role/1
+
+### Delete Role
+DELETE http://localhost:4002/role/1
+
+### ===========================================
+### PRIVILEGE ENDPOINTS
+### ===========================================
+
+### Create Privilege
+POST http://localhost:4002/privilege
+Content-Type: application/json
+
+{
+  "name": "Read Users"
+}
+
+### Get All Privileges
+GET http://localhost:4002/privilege
+
+### Get Privilege by ID
+GET http://localhost:4002/privilege/1
+
+### Delete Privilege
+DELETE http://localhost:4002/privilege/1
+
+### ===========================================
+### USER-ROLE ENDPOINTS
+### ===========================================
+
+### Create User-Role
+POST http://localhost:4002/user-role
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "roleId": "1",
+  "name": "admin",
+  "status": "active"
+}
+
+### Get All User-Roles
+GET http://localhost:4002/user-role
+
+### Get User-Role by ID
+GET http://localhost:4002/user-role/1
+
+### Delete User-Role
+DELETE http://localhost:4002/user-role/1
+
+### ===========================================
+### LOOKUP MASTER ENDPOINTS
+### ===========================================
+
+### Create Lookup Master
+POST http://localhost:4002/lookup-master
+Content-Type: application/json
+
+{
+  "name": "Gender"
+}
+
+### Get All Lookup Masters
+GET http://localhost:4002/lookup-master
+
+### Get Lookup Master by ID
+GET http://localhost:4002/lookup-master/1
+
+### Delete Lookup Master
+DELETE http://localhost:4002/lookup-master/1
+
+### ===========================================
+### LOOKUP DETAIL ENDPOINTS
+### ===========================================
+
+### Create Lookup Detail
+POST http://localhost:4002/lookup-detail
+Content-Type: application/json
+
+{
+  "value": "Male",
+  "masterId": "1"
+}
+
+### Get All Lookup Details
+GET http://localhost:4002/lookup-detail
+
+### Get Lookup Detail by ID
+GET http://localhost:4002/lookup-detail/1
+
+### Delete Lookup Detail
+DELETE http://localhost:4002/lookup-detail/1
+
+### ===========================================
+### COMPLETE WORKFLOW EXAMPLE
+### ===========================================
+
+### Step 1: Create Category
+POST http://localhost:4002/category
+Content-Type: application/json
+
+{
+  "name": "Technology"
+}
+
+### Step 2: Create Company (using category from step 1)
+POST http://localhost:4002/company
+Content-Type: application/json
+
+{
+  "name": "Tech Corp",
+  "location": "New York, USA",
+  "employee_count": 500,
+  "commercial_id": "dGVjaC1jb3JwLTEyMw==",
+  "categoryId": "1"
+}
+
+### Step 3: Create Department (using company from step 2)
+POST http://localhost:4002/department
+Content-Type: application/json
+
+{
+  "name": "Engineering",
+  "description": "Software development team",
+  "companyId": "1"
+}
+
+### Step 4: Create Role
+POST http://localhost:4002/role
+Content-Type: application/json
+
+{
+  "name": "Software Engineer"
+}
+
+### Step 5: Create User (using company, department, and role from previous steps)
+POST http://localhost:4002/user
+Content-Type: application/json
+
+{
+  "full_name": "John Doe",
+  "email": "john.doe@techcorp.com",
+  "password": "securepassword123",
+  "companyId": 1,
+  "departmentId": 1,
+  "roleIds": ["1"]
+}
+
+### Step 6: Create User-Role relationship
+POST http://localhost:4002/user-role
+Content-Type: application/json
+
+{
+  "userId": "1",
+  "roleId": "1",
+  "name": "Software Engineer",
+  "status": "active"
+}
+
+### Step 7: Create Lookup Master
+POST http://localhost:4002/lookup-master
+Content-Type: application/json
+
+{
+  "name": "Employment Status"
+}
+
+### Step 8: Create Lookup Details
+POST http://localhost:4002/lookup-detail
+Content-Type: application/json
+
+{
+  "value": "Full-time",
+  "masterId": "1"
+}
+
+POST http://localhost:4002/lookup-detail
+Content-Type: application/json
+
+{
+  "value": "Part-time",
+  "masterId": "1"
+}
+
+POST http://localhost:4002/lookup-detail
+Content-Type: application/json
+
+{
+  "value": "Contract",
+  "masterId": "1"
+}
